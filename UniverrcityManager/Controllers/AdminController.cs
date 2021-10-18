@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,7 +15,6 @@ namespace UnivercityManager.Controllers
     {
         UnivercityDB _context;
         UserManager<Admin> _userManager;
-        //RoleManager<IdentityRole> _roleManager;
         SignInManager<Admin> _signInManager;
         public AdminController(
             UnivercityDB context,
@@ -45,8 +45,6 @@ namespace UnivercityManager.Controllers
                 var result = await _userManager.CreateAsync(admin, model.Password);
                 if (result.Succeeded)
                 {
-                    //adding role("admin")
-                    //await _userManager.AddToRoleAsync(admin, "admin");
                     // установка куки
                     await _signInManager.SignInAsync(admin, false);
                     return RedirectToAction("Index", "Admin");
@@ -63,10 +61,11 @@ namespace UnivercityManager.Controllers
         }
 
 
+
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string ReturnUrl = null)
         {
-            return View();
+            return View(new LoginViewModel { ReturnUrl = ReturnUrl });
         }
 
         [HttpPost]
@@ -75,17 +74,20 @@ namespace UnivercityManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Admin admin = _userManager.Users.Where(x => x.Email == model.Email).FirstOrDefault();
-                //var roles = await _userManager.GetRolesAsync(admin);
-                //var userRole = _roleManager.Roles.Where(x => roles.AsEnumerable().Contains(x.Name)).Select(x => x.Name).FirstOrDefault();
-
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
                     // проверяем, принадлежит ли URL приложению
-                    return RedirectToAction("Index", "Admin");
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
                 }
                 else
                 {

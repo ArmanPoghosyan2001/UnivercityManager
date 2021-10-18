@@ -1,0 +1,64 @@
+﻿@model IEnumerable<StudentModel>
+<link href="~/css/tables.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Faculty</th>
+            <th>Mark</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Faculty</td>
+                <td>@student.Mark</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form style="display:inline" action="~/User/Search" method="post">
+    <input style="margin-left:300px" type="search" placeholder="Search..." name="search" />
+    <button id="searchButton" type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<script type="text/javascript">
+    document.getElementById('searchButton').onclick = function (ev) {
+        console.log(ev);
+        fetch("https://localhost:44353/user/search?search=" + search)
+            .then(response => response.json())
+            .then(data => {
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Faculty</th>
+                            <th>Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td>@student.FirstName</td>
+                            <td>@student.LastName</td>
+                            <td>@student.Faculty</td>
+                            <td>@student.Mark</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        )
+    }
+</script>
+
+
+
+

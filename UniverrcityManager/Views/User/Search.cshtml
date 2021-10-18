@@ -1,0 +1,24 @@
+﻿@model IEnumerable<StudentModel>
+<link href="~/css/tables.css" rel="stylesheet" type="text/css" />
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Faculty</th>
+            <th>Mark</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Faculty</td>
+                <td>@student.Mark</td>
+            </tr>
+        }
+    </tbody>
+</table>
