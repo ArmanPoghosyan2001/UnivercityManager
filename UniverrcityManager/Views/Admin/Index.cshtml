@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<StudentModel>
     <a href="~/admin/addstudent">Add student</a>
+    <form action="~/admin/logout" method="post">
+        <button type="submit" >Logout</button>
+    </form>
     <table class="styled-table">
         <thead>
             <tr>
@@ -63,4 +66,7 @@
                     font-weight: bold;
                     color: #009879;
                 }
+        body {
+            background: linear-gradient(45deg, rgba(113, 221, 201, 0.7), rgb(132, 223, 33)), linear-gradient(90deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
+        }
     </style>

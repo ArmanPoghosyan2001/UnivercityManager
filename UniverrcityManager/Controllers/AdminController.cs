@@ -61,7 +61,6 @@ namespace UnivercityManager.Controllers
         }
 
 
-
         [HttpGet]
         public IActionResult Login(string ReturnUrl = null)
         {
@@ -102,7 +101,7 @@ namespace UnivercityManager.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "home");
         }
 
         [HttpGet]
@@ -117,6 +116,7 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddStudent(StudentModel student)
         {
@@ -124,6 +124,7 @@ namespace UnivercityManager.Controllers
             _context.SaveChanges();
             return RedirectToAction("index");
         }
+
         public  IActionResult Edit(int id)
         {
             StudentModel student = _context.Students.Find(id);
@@ -133,6 +134,7 @@ namespace UnivercityManager.Controllers
             }
             return View(student);
         }
+
         [HttpPost]
         public IActionResult Edit(StudentModel student)
         {
@@ -150,11 +152,6 @@ namespace UnivercityManager.Controllers
             _context.Remove(student);
             _context.SaveChanges();
             return RedirectToAction("index");
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
     }

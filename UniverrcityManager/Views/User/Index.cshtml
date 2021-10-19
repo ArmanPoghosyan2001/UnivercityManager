@@ -27,36 +27,23 @@
     <button id="searchButton" type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-<script type="text/javascript">
-    document.getElementById('searchButton').onclick = function (ev) {
-        console.log(ev);
-        fetch("https://localhost:44353/user/search?search=" + search)
-            .then(response => response.json())
-            .then(data => {
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Faculty</th>
-                            <th>Mark</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var student in Model)
-                    {
-                        <tr>
-                            <td>@student.FirstName</td>
-                            <td>@student.LastName</td>
-                            <td>@student.Faculty</td>
-                            <td>@student.Mark</td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-            }
-        )
-    }
+<script>
+    $(document).ready(function () {
+        $('#searchform').on('keyup', function () {
+            var searchoption = $('#searchoption').val();
+            var searchform = $('#searchform').val();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#searchhh").keyup(function () {
+            var searchtext = $(this).val().toLowerCase();
+            $('#search-result').children().remove();
+            fetch('https://localhost:44385/User/Search?prefix=' + searchtext)
+                .then(response => response.json())
+        });
+    });
 </script>
 
 
