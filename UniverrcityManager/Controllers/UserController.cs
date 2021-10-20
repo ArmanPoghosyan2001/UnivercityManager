@@ -37,6 +37,11 @@ namespace UnivercityManager.Controllers
             return Json(result);
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
         //[HttpGet]
         //public IActionResult Search(string search)
         //{

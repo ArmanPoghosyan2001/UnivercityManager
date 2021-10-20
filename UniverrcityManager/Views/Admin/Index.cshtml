@@ -1,9 +1,7 @@
 ﻿@model IEnumerable<StudentModel>
-    <a href="~/admin/addstudent">Add student</a>
-    <form action="~/admin/logout" method="post">
-        <button type="submit" >Logout</button>
-    </form>
-    <table class="styled-table">
+    <link href="~/css/tables.css" rel="stylesheet" />
+
+    <table class="styled-table message-container">
         <thead>
             <tr>
                 <th>Name</th>
@@ -11,7 +9,9 @@
                 <th>Faculty</th>
                 <th>Mark</th>
                 <th></th>
-                <th></th>
+                <th>
+                    <a href="~/admin/addstudent">Add student</a>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -29,44 +29,6 @@
         </tbody>
     </table>
 
-    <style>
-        .styled-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.9em;
-            font-family: sans-serif;
-            min-width: 400px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        }
-
-            .styled-table thead tr {
-                background-color: #009879;
-                color: #ffffff;
-                text-align: left;
-            }
-
-            .styled-table th,
-            .styled-table td {
-                padding: 12px 15px;
-            }
-
-            .styled-table tbody tr {
-                border-bottom: 1px solid #dddddd;
-            }
-
-                .styled-table tbody tr:nth-of-type(even) {
-                    background-color: #f3f3f3;
-                }
-
-                .styled-table tbody tr:last-of-type {
-                    border-bottom: 2px solid #009879;
-                }
-
-                .styled-table tbody tr.active-row {
-                    font-weight: bold;
-                    color: #009879;
-                }
-        body {
-            background: linear-gradient(45deg, rgba(113, 221, 201, 0.7), rgb(132, 223, 33)), linear-gradient(90deg, rgba(51, 136, 140, 0.3), rgba(87, 240, 240, 0.1));
-        }
-    </style>
+    <form style="text-align:right" action="~/admin/logout" method="post">
+        <button style="margin-right:20px" type="submit">Logout</button>
+    </form>

@@ -1,15 +1,15 @@
 ﻿.styled-table {
-    display:inline;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color:white
 }
 
     .styled-table thead tr {
-        background-color: #009879;
+        background-color: #57a9d9;
         color: #ffffff;
         text-align: left;
     }
@@ -35,3 +35,22 @@
             font-weight: bold;
             color: #009879;
         }
+
+.message-container {
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    width: 450px;
+    float: left;
+    left: 50%;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -260px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+}
+
+label{
+    color:white
+}

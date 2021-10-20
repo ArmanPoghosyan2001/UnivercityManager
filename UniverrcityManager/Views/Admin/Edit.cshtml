@@ -1,6 +1,7 @@
 ﻿@model StudentModel
+    <link href="~/css/tables.css" rel="stylesheet" />
 <form method="post">
-    <table>
+    <table class="message-container">
         <tr>
 
             <td><label for="FirstName">Name:</label></td>
@@ -20,10 +21,10 @@
         </tr>
         <tr>
             <td>
-                <input type="reset" value="Clear" />
             </td>
             <td>
-                <input type="submit" value="Edit" />
+                <input type="reset" value="Clear" />
+                <input style="margin-left:100px" type="submit" value="Edit" />
             </td>
         </tr>
     </table>
