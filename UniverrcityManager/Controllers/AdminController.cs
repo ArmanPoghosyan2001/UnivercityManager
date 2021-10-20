@@ -101,7 +101,7 @@ namespace UnivercityManager.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "home");
+            return RedirectToAction("Index", "user");
         }
 
         [HttpGet]
