@@ -18,7 +18,7 @@ namespace UnivercityManager.Controllers
         }
         public IActionResult Index()
         {
-            var users = _context.Students.ToList();
+            var users = _context.Students.ToList().OrderByDescending(x => x.Mark);
             return View(users);
         }
         [HttpGet]

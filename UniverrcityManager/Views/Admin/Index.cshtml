@@ -1,34 +1,37 @@
 ﻿@model IEnumerable<StudentModel>
-    <link href="~/css/tables.css" rel="stylesheet" />
+<link href="~/css/tables.css" rel="stylesheet" />
 
-    <table class="styled-table message-container">
-        <thead>
+<table class="styled-table message-container">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Faculty</th>
+            <th>Mark</th>
+            <th></th>
+            <th>
+                <a href="~/admin/addstudent">Add student</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
             <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Faculty</th>
-                <th>Mark</th>
-                <th></th>
-                <th>
-                    <a href="~/admin/addstudent">Add student</a>
-                </th>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Faculty</td>
+                <td>@student.Mark</td>
+                <td><a href="~/Admin/Edit/@student.Id">Edit</a></td>
+                <td><a href="~/Admin/Delete/@student.Id">Delete</a></td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var student in Model)
-            {
-                <tr>
-                    <td>@student.FirstName</td>
-                    <td>@student.LastName</td>
-                    <td>@student.Faculty</td>
-                    <td>@student.Mark</td>
-                    <td><a href="~/Admin/Edit/@student.Id">Edit</a></td>
-                    <td><a href="~/Admin/Delete/@student.Id">Delete</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+<form style="text-align:right" action="~/admin/logout" method="post">
+    <button style="margin:10px 20px; background:transparent;border:none; color:aliceblue" type="submit">Logout</button>
+</form>
 
-    <form style="text-align:right" action="~/admin/logout" method="post">
-        <button style="margin-right:20px" type="submit">Logout</button>
-    </form>
+<div style="margin-top:-35px;" class="ef">
+    <input type="text" id="search" name="prefix" class="searchText" style="height:40px;width:376px;margin-top:31px; margin-left:10px;" placeholder="search...">
+</div>

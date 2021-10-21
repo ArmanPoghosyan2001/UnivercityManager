@@ -23,9 +23,9 @@
         border-bottom: 1px solid #dddddd;
     }
 
-        .styled-table tbody tr:nth-of-type(even) {
+      /*  .styled-table tbody tr:nth-of-type(even) {
             background-color: #f3f3f3;
-        }
+        }*/
 
         .styled-table tbody tr:last-of-type {
             border-bottom: 2px solid #009879;
@@ -53,4 +53,22 @@
 
 label{
     color:white
+}
+
+.ef input  {
+    height: 40px;
+    width: 376px;
+    margin-top: 31px;
+    margin-left: 700px;
+    animation: mymovie 3s forwards;
+}
+
+@keyframes mymovie {
+    from {
+        margin-left: 700px;
+    }
+
+    to {
+        margin-left: 300px;
+    }
 }
