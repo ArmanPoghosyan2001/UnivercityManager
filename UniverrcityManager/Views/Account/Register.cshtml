@@ -1,0 +1,29 @@
+﻿@model RegisterViewModel
+
+<link href="~/css/adminpanel.css" rel="stylesheet" type="text/css" />
+<form method="post" asp-controller="Admin" asp-action="Register">
+    <div class="panel">
+        <div class="state"><br><i class="fa fa-unlock-alt"></i><br><h1>Register</h1></div>
+        <div class="form">
+            <div style="color:white">
+                <label asp-for="Email"></label><br />
+                <input asp-for="Email" placeholder="admin@mail.ru" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div style="color:white">
+                <label asp-for="Password"></label><br />
+                <input asp-for="Password" placeholder="admin" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div style="color:white">
+                <label asp-for="ConfirmPassword"></label><br />
+                <input asp-for="ConfirmPassword" placeholder="admin" />
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+
+            <div class="login">
+                <input style="border:none; width:100%; background:transparent"  type="submit" value="Register" />
+            </div>
+        </div>
+    </div>
+</form>
