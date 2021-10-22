@@ -28,11 +28,11 @@ namespace UnivercityManager.Controllers
             if (prefix != null)
             {
                 result = _context.Students.Where(p => p.FirstName.Contains(prefix) || p.LastName.Contains(prefix))
-                                   .ToList();
+                                   .OrderByDescending(s=> s.Mark).ToList();
             }
             else
             {
-                result = _context.Students.ToList();
+                result = _context.Students.OrderByDescending(s => s.Mark).ToList();
             }
             return Json(result);
         }
@@ -41,12 +41,5 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
-
-        //[HttpGet]
-        //public IActionResult Search(string search)
-        //{
-        //    var users = _context.Students.Where(s => EF.Functions.Like(s.FirstName , $"%{search}%")).ToList();
-        //    return View(users);
-        //}
     }
 }

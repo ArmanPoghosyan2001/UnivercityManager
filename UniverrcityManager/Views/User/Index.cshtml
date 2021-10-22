@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StudentModel>
 <link href="~/css/tables.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div id="search-result">
+<div>
     <table class="styled-table message-container">
         <thead>
             <tr>
@@ -12,31 +12,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="search-result">
             @foreach (var student in Model)
-            {
-                if (student.Mark < 8)
-                {
-            <tr>
-                <td>@student.FirstName</td>
-                <td>@student.LastName</td>
-                <td>@student.Faculty</td>
-                <td>@student.Mark</td>
-                <td><img src="~/imgs/failed.jpg" width="40" height="40" /></td>
-            </tr>
-                }
-                else
-                {
-                    <tr>
-                        <td>@student.FirstName</td>
-                        <td>@student.LastName</td>
-                        <td>@student.Faculty</td>
-                        <td>@student.Mark</td>
-                        <td><img src="~/imgs/passed.jpg" width="40" height="40" /></td>
-                    </tr>
-
-                }
-            }
+             {
+             <tr>
+                 <td>@student.FirstName</td>
+                 <td>@student.LastName</td>
+                 <td>@student.Faculty</td>
+                 <td>@student.Mark</td>
+                 <td><img src="@student.ImgPath" width="40" height="40" /></td>
+             </tr>
+             }
         </tbody>
     </table>
 </div>
@@ -45,7 +31,9 @@
 <div style="margin-top:25px;" class="ef">
     <input type="text" id="search" name="prefix" class="searchText" style="height:40px;width:376px;margin-top:31px; margin-left:10px;" placeholder="search...">
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function () {
         $("#search").keyup(function () {
@@ -54,46 +42,16 @@
             fetch('https://localhost:44311/User/Search?prefix=' + searchtext)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
                     for (var i = 0; i < data.length; i++) {
                         $('#search-result').append(`
-                                <table class="styled-table message-container">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Surname</th>
-                                            <th>Faculty</th>
-                                            <th>Mark</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                            if (${data[i].Mark} < 8)
-                                            {
-                                        <tr>
-                                            <td>${data[i].firstName}</td>
-                                            <td>${data[i].lastName}</td>
-                                            <td>${data[i].faculty}</td>
-                                            <td>${data[i].mark}</td>
-                                            <td><img src="~/imgs/failed.jpg" width="40" height="40" /></td>
-                                        </tr>
-                                            }
-                                            else
-                                            {
-                                                <tr>
-                                                    <td>${data[i].firstName}</td>
-                                                    <td>${data[i].lastName}</td>
-                                                    <td>${data[i].faculty}</td>
-                                                    <td>${data[i].mark}</td>
-                                                    <td><img src="{/imgs/passed.jpg}" width="40" height="40" /></td>
-                                                </tr>
-
-                                            }
-                                        }
-                                    </tbody>
-                                </table>
-                            `);
+                             <tr>
+                                 <td>${data[i].firstName}</td>
+                                 <td>${data[i].lastName}</td>
+                                 <td>${data[i].faculty}</td>
+                                 <td>${data[i].mark}</td>
+                                 <td><img src="${data[i].imgPath}" width="40" height="40" /></td>
+                             </tr>
+                        `);
                     }
                 })
         });

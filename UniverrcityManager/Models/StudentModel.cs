@@ -12,5 +12,6 @@ namespace UnivercityManager.Models
         public string LastName { get; set; }
         public string Faculty { get; set; }
         public double Mark { get; set; }
+        public string ImgPath { get; set; }
     }
 }

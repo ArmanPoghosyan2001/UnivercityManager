@@ -14,7 +14,7 @@
             </th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="search-result">
         @foreach (var student in Model)
         {
             <tr>
@@ -35,3 +35,30 @@
 <div style="margin-top:-35px;" class="ef">
     <input type="text" id="search" name="prefix" class="searchText" style="height:40px;width:376px;margin-top:31px; margin-left:10px;" placeholder="search...">
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function () {
+        $("#search").keyup(function () {
+            var searchtext = $(this).val().toLowerCase();
+            $('#search-result').children().remove();
+            fetch('https://localhost:44311/User/Search?prefix=' + searchtext)
+                .then(response => response.json())
+                .then(data => {
+                    for (var i = 0; i < data.length; i++) {
+                        $('#search-result').append(`
+                             <tr>
+                                 <td>${data[i].firstName}</td>
+                                 <td>${data[i].lastName}</td>
+                                 <td>${data[i].faculty}</td>
+                                 <td>${data[i].mark}</td>
+                                 <td><a href="~/Admin/Edit/${data[i].id}">Edit</a></td>
+                                 <td><a href="~/Admin/Delete/${data[i].id}">Delete</a></td>
+                             </tr>
+                            `);
+                    }
+                })
+        });
+    });
+</script>

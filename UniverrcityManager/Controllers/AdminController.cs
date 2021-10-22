@@ -11,7 +11,6 @@ using UnivercityManager.Models;
 
 namespace UnivercityManager.Controllers
 {
-    [Authorize]
     public class AdminController : Controller
     {
         UnivercityDB _context;
@@ -121,6 +120,14 @@ namespace UnivercityManager.Controllers
         [HttpPost]
         public IActionResult AddStudent(StudentModel student)
         {
+            if (student.Mark<8)
+            {
+                student.ImgPath = "/imgs/failed.jpg";
+            }
+            else
+            {
+                student.ImgPath = "/imgs/passed.jpg";
+            }
             _context.Add(student);
             _context.SaveChanges();
             return RedirectToAction("index");
