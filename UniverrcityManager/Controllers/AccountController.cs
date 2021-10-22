@@ -71,6 +71,8 @@ namespace UnivercityManager.Controllers
             {
                 var result =
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                //var admin = _userManager.Users.Where(x => x.Email == model.Email).FirstOrDefault();
+                //    await _signInManager.SignInAsync(admin,false,authenticationMethod: "Login");
 
                 if (result.Succeeded)
                 {
