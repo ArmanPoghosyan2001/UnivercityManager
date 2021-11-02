@@ -107,7 +107,7 @@ namespace UnivercityManager.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var students = _context.Students.ToList();
+            var students = _context.Students.ToList().OrderByDescending(x=> x.Mark);
             return View(students);
         }
 
@@ -148,6 +148,14 @@ namespace UnivercityManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (student.Mark < 8)
+                {
+                    student.ImgPath = "/imgs/failed.jpg";
+                }
+                else
+                {
+                    student.ImgPath = "/imgs/passed.jpg";
+                }
                 _context.Update(student);
                 _context.SaveChanges();
             }

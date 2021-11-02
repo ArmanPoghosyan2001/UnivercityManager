@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<StudentModel>
+@{
+    ViewData["Title"] = "Students";
+} 
 <link href="~/css/tables.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div>
@@ -12,17 +15,17 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody id="search-result">
+        <tbody style="overflow-y: scroll; height: 10px" id="search-result">
             @foreach (var student in Model)
-             {
-             <tr>
-                 <td>@student.FirstName</td>
-                 <td>@student.LastName</td>
-                 <td>@student.Faculty</td>
-                 <td>@student.Mark</td>
-                 <td><img src="@student.ImgPath" width="40" height="40" /></td>
-             </tr>
-             }
+            {
+                <tr>
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                    <td>@student.Faculty</td>
+                    <td>@student.Mark</td>
+                    <td><img src="@student.ImgPath" width="40" height="40" /></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
@@ -57,7 +60,3 @@
         });
     });
 </script>
-
-
-
-

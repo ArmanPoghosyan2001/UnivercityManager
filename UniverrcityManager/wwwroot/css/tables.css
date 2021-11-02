@@ -3,9 +3,9 @@
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    min-width: 500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    background-color:white
+    background-color:white;
 }
 
     .styled-table thead tr {
@@ -21,15 +21,15 @@
 
     .styled-table tbody tr {
         border-bottom: 1px solid #dddddd;
+        height:10px;
     }
 
       /*  .styled-table tbody tr:nth-of-type(even) {
             background-color: #f3f3f3;
         }*/
-
-        .styled-table tbody tr:last-of-type {
-            border-bottom: 2px solid #009879;
-        }
+       /* .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #57a9d9;
+        }*/
 
         .styled-table tbody tr.active-row {
             font-weight: bold;
@@ -60,10 +60,10 @@ label{
     width: 376px;
     margin-top: 31px;
     margin-left: 700px;
-    animation: mymovie 3s forwards;
+    animation: mymove 3s forwards;
 }
 
-@keyframes mymovie {
+@keyframes mymove {
     from {
         margin-left: 700px;
     }
