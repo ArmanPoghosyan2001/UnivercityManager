@@ -45,5 +45,12 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
+        public JsonResult Results()
+        {
+            ResultsVM results = new ResultsVM();
+            results.countPassed = _context.Students.Count(x => x.Mark > 8);
+            results.countFailed = _context.Students.Count(x => x.Mark < 8);
+            return Json(results);
+        }
     }
 }

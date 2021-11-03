@@ -11,6 +11,7 @@ using UnivercityManager.Models;
 
 namespace UnivercityManager.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         UnivercityDB _context;
