@@ -45,6 +45,12 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
+
+        //public IActionResult Message(MessageModel model)
+        //{
+
+        //}
+
         public JsonResult Results()
         {
             ResultsVM results = new ResultsVM();
