@@ -21,6 +21,7 @@
 
     .styled-table tbody tr {
         border-bottom: 1px solid #dddddd;
+        overflow:scroll;
     }
 
       /*  .styled-table tbody tr:nth-of-type(even) {

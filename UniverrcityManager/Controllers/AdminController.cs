@@ -103,11 +103,11 @@ namespace UnivercityManager.Controllers
         //    await _signInManager.SignOutAsync();
         //    return RedirectToAction("Index", "user");
         //}
-        
+
         [HttpGet]
         public IActionResult Index()
         {
-            var students = _context.Students.ToList();
+            var students = _context.Students.ToList().OrderByDescending(x => x.Mark);
             return View(students);
         }
 
@@ -120,7 +120,7 @@ namespace UnivercityManager.Controllers
         [HttpPost]
         public IActionResult AddStudent(StudentModel student)
         {
-            if (student.Mark<8)
+            if (student.Mark < 8)
             {
                 student.ImgPath = "/imgs/failed.jpg";
             }
@@ -133,7 +133,7 @@ namespace UnivercityManager.Controllers
             return RedirectToAction("index");
         }
 
-        public  IActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             StudentModel student = _context.Students.Find(id);
             if (student == null)
@@ -148,6 +148,14 @@ namespace UnivercityManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (student.Mark < 8)
+                {
+                    student.ImgPath = "/imgs/failed.jpg";
+                }
+                else
+                {
+                    student.ImgPath = "/imgs/passed.jpg";
+                }
                 _context.Update(student);
                 _context.SaveChanges();
             }
