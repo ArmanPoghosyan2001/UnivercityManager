@@ -41,5 +41,22 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+
+        //public IActionResult Message(MessageModel model)
+        //{
+
+        //}
+
+        public JsonResult Results()
+        {
+            ResultsVM results = new ResultsVM();
+            results.countPassed = _context.Students.Count(x => x.Mark > 8);
+            results.countFailed = _context.Students.Count(x => x.Mark < 8);
+            return Json(results);
+        }
     }
 }
