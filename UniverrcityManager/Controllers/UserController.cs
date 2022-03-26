@@ -16,11 +16,13 @@ namespace UnivercityManager.Controllers
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             var users = _context.Students.ToList().OrderByDescending(x => x.Mark);
             return View(users);
         }
+
         [HttpGet]
         public JsonResult Search(string prefix)
         {
@@ -41,6 +43,7 @@ namespace UnivercityManager.Controllers
         {
             return View();
         }
+
         public IActionResult Contacts()
         {
             return View();
